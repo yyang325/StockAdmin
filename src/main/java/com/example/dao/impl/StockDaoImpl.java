@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.example.dao.StockDao;
 import com.example.model.Stock;
 
-
 @Repository
 public class StockDaoImpl implements StockDao {
 	private HibernateTemplate template;
