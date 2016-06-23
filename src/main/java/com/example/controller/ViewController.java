@@ -12,4 +12,10 @@ public class ViewController {
 	public String homePage(){
 		return "home";
 	}
+	
+	
+	@RequestMapping(value="/main", method=RequestMethod.GET)
+	public String mainPage(){
+		return "main";
+	}
 }

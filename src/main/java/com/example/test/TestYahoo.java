@@ -6,8 +6,7 @@ import com.example.model.StockInfo;
 public class TestYahoo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		StockInfo si = YahooFinance.getStockInfo("GOOG");
+		StockInfo si = YahooFinance.getStockInfo("goog");
 		System.out.println(si);
 	}
 

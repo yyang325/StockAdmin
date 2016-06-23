@@ -22,7 +22,7 @@ public class StockDaoImpl implements StockDao {
 	@SuppressWarnings("unchecked")
 	public Stock findBySymbol(String symbol) {
 		List<Stock> list = this.template.findByNamedParam("From Stock s where s.symbol = :symbol", "symbol", symbol);
-		return list.get(0);
+		return (list == null || list.size() < 1) ? null : list.get(0);
 	}
 
 	public void save(Stock stock) {
@@ -40,7 +40,7 @@ public class StockDaoImpl implements StockDao {
 	@SuppressWarnings("unchecked")
 	public Stock findByName(String name) {
 		List<Stock> list = this.template.findByNamedParam("From Stock s where s.name = :name", "name", name);
-		return list.get(0);
+		return (list == null || list.size() < 1) ? null : list.get(0);
 	}
 
 	@SuppressWarnings("unchecked")

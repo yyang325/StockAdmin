@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.dao.StockDao;
 import com.example.finance.YahooFinance;
 import com.example.model.Stock;
+import com.example.model.StockHistory;
 import com.example.model.StockInfo;
 
 @Service
@@ -19,6 +21,10 @@ public class StockService {
 		return YahooFinance.getStockInfo(symbol);
 	}
 	
+	public StockHistory getStockHistory(String symbol, String start, String end) throws ParseException{
+		return YahooFinance.getStockHistory(symbol, start, end);
+	}
+	
 	public Stock searchSymbol(String symbol){
 		StockInfo stockInfo = YahooFinance.getStockInfo(symbol);
 		Stock stock = new Stock();
@@ -28,11 +34,18 @@ public class StockService {
 	}
 	
 	public void insert(String symbol){
-		Stock stock = searchSymbol(symbol);
-		this.stockDao.save(stock);
+		Stock old = this.stockDao.findBySymbol(symbol);
+		if(old == null || old.getName() == null || old.getName().length() < 1){
+			Stock stock = searchSymbol(symbol);
+			this.stockDao.save(stock);
+		}
 	}
 	
 	public void delete(String symbol){
+		Stock old = this.stockDao.findBySymbol(symbol);
+		if(old == null || old.getName() == null || old.getName().length() < 1){
+			return;
+		}
 		Stock stock = this.stockDao.findBySymbol(symbol);
 		this.stockDao.delete(stock);
 	}
