@@ -31,6 +31,7 @@ public class APIController {
 	@RequestMapping(value="/stock/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public void addStock(@PathVariable String symbol){
+		symbol = symbol.toUpperCase();
 		this.stockService.insert(symbol);
 	}
 	
@@ -38,6 +39,7 @@ public class APIController {
 	@RequestMapping(value="/stock/delete/{symbol}", method=RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteStock(@PathVariable String symbol){
+		symbol = symbol.toUpperCase();
 		this.stockService.delete(symbol);
 	}
 	
@@ -52,6 +54,7 @@ public class APIController {
 	@RequestMapping(value="/stockdetail/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public StockInfo getStockDetail(@PathVariable String symbol){
+		symbol = symbol.toUpperCase();
 		return this.stockService.getStockDetail(symbol);
 	}
 	
@@ -66,6 +69,7 @@ public class APIController {
 		cal.add(Calendar.YEAR, -1);
 		Date result = cal.getTime();
 		String start = dateFormat.format(result);
+		symbol = symbol.toUpperCase();
 		return this.stockService.getStockHistory(symbol, start, end);
 	}
 }

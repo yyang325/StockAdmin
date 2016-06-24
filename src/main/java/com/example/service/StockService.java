@@ -35,6 +35,8 @@ public class StockService {
 	}
 	
 	public void insert(String symbol){
+		Stock s = searchSymbol(symbol);
+		if(s == null || s.getName() == null || s.getName().length() < 1) return;
 		Stock old = this.stockDao.findBySymbol(symbol);
 		if(old == null || old.getName() == null || old.getName().length() < 1){
 			Stock stock = searchSymbol(symbol);
@@ -43,6 +45,8 @@ public class StockService {
 	}
 	
 	public void delete(String symbol){
+		Stock s = searchSymbol(symbol);
+		if(s == null || s.getName() == null || s.getName().length() < 1) return;
 		Stock old = this.stockDao.findBySymbol(symbol);
 		if(old == null || old.getName() == null || old.getName().length() < 1){
 			return;

@@ -85,7 +85,7 @@
             </table>
           </div>
           
-          <h2>Stock History</h2>
+          <h2>Stock History <span ng-if="stockName.length > 0"> -- </span>  <span>{{stockName}}</span>  <span>{{stockSymbol}}</span>  </h2>
           <div class="row">
 	          <div class="col-md-4">
 	          	<canvas id="c" height="400px"></canvas>
