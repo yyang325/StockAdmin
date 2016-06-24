@@ -25,20 +25,14 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#">Monitor Stock Price</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li style="cursor: pointer"><a href="#">Dashboard</a></li>
             <li style="cursor: pointer"><a href="#">Help</a></li>
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
         </div>
       </div>
     </nav>
@@ -85,7 +79,7 @@
             </table>
           </div>
           
-          <h2>Stock History <span ng-if="stockName.length > 0"> -- </span>  <span>{{stockName}}</span>  <span>{{stockSymbol}}</span>  </h2>
+          <h2>Stock History <span ng-if="stockNameHistory.length > 0"> -- </span>  <span>{{stockNameHistory}}</span>  <span>{{stockSymbolHistory}}</span>  </h2>
           <div class="row">
 	          <div class="col-md-4">
 	          	<canvas id="c" height="400px"></canvas>

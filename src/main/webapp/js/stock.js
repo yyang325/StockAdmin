@@ -42,16 +42,16 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 	
 	
 	$scope.stockHistory = [];
-	$scope.stockName = "";
-	$scope.stockSymbol = "";
+	$scope.stockNameHistory = "";
+	$scope.stockSymbolHistory = "";
 	$scope.showHistory = function(stock){
 		$http({
 			method: "GET",
 			url: "stock/history/" + stock.symbol
 		}).success(function(data){
 			$scope.stockHistory = [];
-			$scope.stockName = stock.name;
-			$scope.stockSymbol = stock.symbol;
+			$scope.stockNameHistory = stock.name;
+			$scope.stockSymbolHistory = stock.symbol;
 			for(var i = 1; i < data.records.length; i++){
 				$scope.stockHistory.push(data.records[i].split(','));
 			}
