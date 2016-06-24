@@ -33,8 +33,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Help</a></li>
+            <li style="cursor: pointer"><a href="#">Dashboard</a></li>
+            <li style="cursor: pointer"><a href="#">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -48,22 +48,21 @@
         <div class="col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 main">
           <div class="page-header col-md-12" style="vertical-align: bottom;">
           	<h1 class="col-md-4">Dashboard</h1>
-<!--           	<input class="col-md-6" type="text" placeholder="Stock Symbol"> -->
           	<div class="input-group" style="top:25px;">
           	  
 		      <input  type="text" class="form-control" ng-model="stockSymbol" placeholder="Stock Symbol">
 		      <div class="input-group-btn">
 		        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
 		        <ul class="dropdown-menu dropdown-menu-right">
-		          <li ng-click="addStock()"><a>Add Stock</a></li>
-		          <li ng-click="deleteStock()"><a>Delete Stock</a></li>
+		          <li style="cursor: pointer" ng-click="addStock()"><a>Add Stock</a></li>
+		          <li style="cursor: pointer" ng-click="deleteStock()"><a>Delete Stock</a></li>
 		        </ul>
 		      </div><!-- /btn-group -->
 		    </div><!-- /input-group -->
           </div>
 			
           <h2 class="sub-header">Stock List</h2>
-          <div class="table-responsive">
+          <div class="table-responsive" style="height: 180px; overflow:scroll">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -89,9 +88,9 @@
           <h2>Stock History</h2>
           <div class="row">
 	          <div class="col-md-4">
-	          	<canvas id="c" width="400px" height="400px"></canvas>
+	          	<canvas id="c" height="400px"></canvas>
 	          </div>
-	          <div class="col-md-7 col-md-offset-1" style="background-color: lightgreen; height: 400px; overflow: scroll;">
+	          <div class="col-md-7 col-md-offset-1" style="height: 400px; overflow: scroll;">
 		         <table class="table table-striped">
 	              <thead>
 	                <tr>

@@ -9,7 +9,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 				method:"GET",
 				url: "stock/"+$scope.stockSymbol,
 			}).success(function(data){
-				console.log("Ajax Success!");
+				$scope.stockSymbol = "";
 				$scope.showList();
 			});
 		}
@@ -22,7 +22,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 				method:"DELETE",
 				url: "stock/delete/"+$scope.stockSymbol,
 			}).success(function(data){
-				console.log("Ajax Success!");
+				$scope.stockSymbol = "";
 				$scope.showList();
 			});
 		}
