@@ -6,7 +6,7 @@ import com.example.model.StockInfo;
 public class TestYahoo {
 
 	public static void main(String[] args) {
-		StockInfo si = YahooFinance.getStockInfo("goog");
+		StockInfo si = YahooFinance.getStockInfo("BABA");
 		System.out.println(si);
 	}
 

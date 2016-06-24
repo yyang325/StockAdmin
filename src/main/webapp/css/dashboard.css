@@ -103,3 +103,13 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+/*
+ * ng class font color
+ */
+.greenFont {
+	color: green;
+}
+.redFont {
+	color: red;
+}

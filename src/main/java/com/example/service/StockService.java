@@ -1,6 +1,7 @@
 package com.example.service;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +51,13 @@ public class StockService {
 		this.stockDao.delete(stock);
 	}
 	
-	public List<Stock> listAllStock(){
-		return this.stockDao.queryAll();
+	public List<StockInfo> listAllStock(){
+		List<Stock> list = this.stockDao.queryAll();
+		List<StockInfo> res = new ArrayList<StockInfo>();
+		for(Stock stock: list){
+			res.add(getStockDetail(stock.getSymbol()));
+		}
+		return res;
 	}
 	
 	

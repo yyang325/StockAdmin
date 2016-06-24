@@ -55,6 +55,7 @@ public class YahooFinance {
 	
 	
 	public static StockHistory getStockHistory(String symbol, String start, String end) throws ParseException{
+		List<String> records = null;
 		String[] startInfo = start.split("/");
 		String[] endInfo = end.split("/");
 		for(int i = 0; i < 3; i++){
@@ -68,7 +69,7 @@ public class YahooFinance {
 			BufferedReader in = new BufferedReader(new InputStreamReader(urlconn.getInputStream()));
 			String line = null;
 			
-			List<String> records = new ArrayList<String>();
+			records = new ArrayList<String>();
 			while ((line = in.readLine()) != null){
 				records.add(line);
 			}
@@ -79,7 +80,10 @@ public class YahooFinance {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		StockHistory sh = new StockHistory();
+		sh.setSymbol(symbol);
+		sh.setRecords(records);
+		return sh;
 	}
 	
 }

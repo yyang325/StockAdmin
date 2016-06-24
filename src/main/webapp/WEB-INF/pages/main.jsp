@@ -49,7 +49,7 @@
           <div class="page-header col-md-12" style="vertical-align: bottom;">
           	<h1 class="col-md-4">Dashboard</h1>
 <!--           	<input class="col-md-6" type="text" placeholder="Stock Symbol"> -->
-          	<div class="input-group">
+          	<div class="input-group" style="top:25px;">
           	  
 		      <input  type="text" class="form-control" ng-model="stockSymbol" placeholder="Stock Symbol">
 		      <div class="input-group-btn">
@@ -62,51 +62,61 @@
 		    </div><!-- /input-group -->
           </div>
 			
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-
           <h2 class="sub-header">Stock List</h2>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
+                  <th>Name</th>
+                  <th>Symbol</th>
+                  <th>Price</th>
+                  <th>Change</th>
+                  <th>Percent Change</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
+                <tr ng-repeat = "stock in stocks" ng-click="showHistory(stock)">
+                  <td>{{stock.name}}</td>
+                  <td>{{stock.symbol}}</td>
+                  <td ng-class="{greenFont: stock.change<0, redFont: stock.change>0}">{{stock.price}}</td>
+                  <td ng-class="{greenFont: stock.change<0, redFont: stock.change>0}">{{stock.change}}</td>
+                  <td ng-class="{greenFont: stock.change<0, redFont: stock.change>0}">{{stock.percentChange}}</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+          
+          <h2>Stock History</h2>
+          <div class="row">
+	          <div class="col-md-4">
+	          	<canvas id="c" width="400px" height="400px"></canvas>
+	          </div>
+	          <div class="col-md-7 col-md-offset-1" style="background-color: lightgreen; height: 400px; overflow: scroll;">
+		         <table class="table table-striped">
+	              <thead>
+	                <tr>
+	                  <th>Date</th>
+	                  <th>Open</th>
+	                  <th>High</th>
+	                  <th>Low</th>
+	                  <th>Close</th>
+	                  <th>Volume</th>
+	                  <th>Adj Close</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	                <tr ng-repeat = "record in stockHistory" class="small">
+	                  <td>{{record[0]}}</td>
+	                  <td>{{record[1]}}</td>
+	                  <td>{{record[2]}}</td>
+	                  <td>{{record[3]}}</td>
+	                  <td>{{record[4]}}</td>
+	                  <td>{{record[5]}}</td>
+	                  <td>{{record[6]}}</td>
+	                </tr>
+	              </tbody>
+	            </table>
+	          </div>
           </div>
         </div>
       </div>
@@ -117,6 +127,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/stock.js"></script>
   </body>
