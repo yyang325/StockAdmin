@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.example.model.Stock;
 
+/**
+ * Dao Interface to define different method including:
+ * @author Yi Yang
+ *
+ */
 public interface StockDao {
 	public Stock findByName(String name);
 	public Stock findBySymbol(String symbol);

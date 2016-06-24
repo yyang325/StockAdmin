@@ -1,12 +1,16 @@
 var app = angular.module('mainApp', []);
 
 app.controller('mainCtrl', function($scope, $http, $interval){
+
+	/*
+	 * Method to add a specific stock, and update the list of stock by invoke $scope.showList()
+	 * 
+	 * */
 	$scope.stocks = [];
-	
 	$scope.addStock = function(){
 		if($scope.stockSymbol){
 			$http({
-				method:"GET",
+				method:"POST",
 				url: "stock/"+$scope.stockSymbol,
 			}).success(function(data){
 				$scope.stockSymbol = "";
@@ -16,6 +20,11 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 	}
 	
 	
+	
+	/*
+	 * Method to delete a specific stock, and update the list of stock by invoke $scope.showList()
+	 * 
+	 * */
 	$scope.deleteStock = function(){
 		if($scope.stockSymbol){
 			$http({
@@ -28,6 +37,11 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 		}
 	}
 	
+	
+	/*
+	 * Method to get All added stock, and use $interval service to refresh data in every 1.5 seconds
+	 * 
+	 * */
 	$scope.showList = function(){
 		$http({
 			method: "GET",
@@ -36,11 +50,15 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 			$scope.stocks = data;
 		});
 	}
-	
 	$scope.showList();
-	$interval($scope.showList, 5000);
+	$interval($scope.showList, 1500);
 	
 	
+	
+	/*
+	 * Method to get specific stock's history price data. Store them into $scope.stockHistory
+	 * 
+	 * */
 	$scope.stockHistory = [];
 	$scope.stockNameHistory = "";
 	$scope.stockSymbolHistory = "";
@@ -60,11 +78,15 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 	}
 	
 	
+	/**
+	 * Use chart.js to generate a line chart for analysis the history data of stock
+	 **/
 	var generate = function(data){
 		console.log(data[40][0])
 		var len = data.length;
 		var base = Math.floor(len/12);
 		
+		//Set up HTML5 Canvas and catch history data
 		var ctx = document.getElementById("c").getContext("2d");
 		var lab = [];
 		var val = [];
@@ -72,7 +94,6 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 			lab.push(data[base*i][0]);
 			val.push(data[base*i][4]);
 		}
-		console.log(val)
 	    var data = {
 	      labels: lab,
 	      datasets: [{

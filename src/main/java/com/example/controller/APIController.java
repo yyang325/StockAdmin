@@ -15,27 +15,45 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.example.model.Stock;
 import com.example.model.StockHistory;
 import com.example.model.StockInfo;
 import com.example.service.StockService;
 
 
+/**
+ * This is the controller class to implement REST API
+ * @author Yi Yang
+ * @since  06/23/2016
+ */
 @Controller
 @SessionAttributes
 public class APIController {
 	@Autowired
 	private StockService stockService;
 	
-	//add stock   need to change to post
-	@RequestMapping(value="/stock/{symbol}", method=RequestMethod.GET)
+	/*
+	 * REST API
+	 * Method: POST
+	 * Value: /stock/{symbolName}
+	 * 
+	 * Function: Add Stock to DB
+	 * 
+	 * */
+	@RequestMapping(value="/stock/{symbol}", method=RequestMethod.POST)
 	@ResponseBody
 	public void addStock(@PathVariable String symbol){
 		symbol = symbol.toUpperCase();
 		this.stockService.insert(symbol);
 	}
 	
-	//haven't check yet
+	/*
+	 * REST API
+	 * Method: DELETE
+	 * Value: /stock/delete/{symbolName}
+	 * 
+	 * Function: Delete Stock From DB
+	 * 
+	 * */
 	@RequestMapping(value="/stock/delete/{symbol}", method=RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteStock(@PathVariable String symbol){
@@ -44,6 +62,14 @@ public class APIController {
 	}
 	
 	
+	/*
+	 * REST API
+	 * Method: GET
+	 * Value: /stock
+	 * 
+	 * Function: Get the List of Stock From DB
+	 * 
+	 * */
 	@RequestMapping(value="/stock", method=RequestMethod.GET)
 	@ResponseBody
 	public List<StockInfo> listStock(){
@@ -51,6 +77,15 @@ public class APIController {
 	}
 	
 	
+	
+	/*
+	 * REST API
+	 * Method: GET
+	 * Value: /stock/{symbolName}
+	 * 
+	 * Function: Get Specific Stock's Current Detail Information
+	 * 
+	 * */
 	@RequestMapping(value="/stockdetail/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public StockInfo getStockDetail(@PathVariable String symbol){
@@ -59,6 +94,16 @@ public class APIController {
 	}
 	
 	
+	
+	
+	/*
+	 * REST API
+	 * Method: GET
+	 * Value: /stock/history/{symbolName}
+	 * 
+	 * Function: Get Specific Stock's History Detail Information
+	 * 
+	 * */
 	@RequestMapping(value="/stock/history/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public StockHistory getStockHistory(@PathVariable String symbol) throws ParseException{

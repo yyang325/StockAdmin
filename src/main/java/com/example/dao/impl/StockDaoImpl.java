@@ -10,6 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.example.dao.StockDao;
 import com.example.model.Stock;
 
+/**
+ * Implement Stock Dao by Hibernate Template
+ * @author Yi
+ *
+ */
 @Repository
 public class StockDaoImpl implements StockDao {
 	private HibernateTemplate template;
@@ -19,12 +24,6 @@ public class StockDaoImpl implements StockDao {
 		template = new HibernateTemplate(sessionFactory);
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Stock findBySymbol(String symbol) {
-		List<Stock> list = this.template.findByNamedParam("From Stock s where s.symbol = :symbol", "symbol", symbol);
-		return (list == null || list.size() < 1) ? null : list.get(0);
-	}
-
 	public void save(Stock stock) {
 		template.save(stock);
 	}
@@ -37,6 +36,12 @@ public class StockDaoImpl implements StockDao {
 		template.delete(stock);
 	}
 
+	@SuppressWarnings("unchecked")
+	public Stock findBySymbol(String symbol) {
+		List<Stock> list = this.template.findByNamedParam("From Stock s where s.symbol = :symbol", "symbol", symbol);
+		return (list == null || list.size() < 1) ? null : list.get(0);
+	}
+	
 	@SuppressWarnings("unchecked")
 	public Stock findByName(String name) {
 		List<Stock> list = this.template.findByNamedParam("From Stock s where s.name = :name", "name", name);
