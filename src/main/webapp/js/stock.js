@@ -11,7 +11,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 		if($scope.stockSymbol){
 			$http({
 				method:"POST",
-				url: "stock/"+$scope.stockSymbol,
+				url: "api/stock/"+$scope.stockSymbol,
 			}).success(function(data){
 				$scope.stockSymbol = "";
 				$scope.showList();
@@ -29,7 +29,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 		if($scope.stockSymbol){
 			$http({
 				method:"DELETE",
-				url: "stock/delete/"+$scope.stockSymbol,
+				url: "api/stock/delete/"+$scope.stockSymbol,
 			}).success(function(data){
 				$scope.stockSymbol = "";
 				$scope.showList();
@@ -45,7 +45,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 	$scope.showList = function(){
 		$http({
 			method: "GET",
-			url: "stock"
+			url: "api/stock"
 		}).success(function(data){
 			$scope.stocks = data;
 		});
@@ -65,7 +65,7 @@ app.controller('mainCtrl', function($scope, $http, $interval){
 	$scope.showHistory = function(stock){
 		$http({
 			method: "GET",
-			url: "stock/history/" + stock.symbol
+			url: "api/stock/history/" + stock.symbol
 		}).success(function(data){
 			$scope.stockHistory = [];
 			$scope.stockNameHistory = stock.name;

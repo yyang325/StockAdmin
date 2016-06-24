@@ -34,12 +34,12 @@ public class APIController {
 	/*
 	 * REST API
 	 * Method: POST
-	 * Value: /stock/{symbolName}
+	 * Value: /api/stock/{symbolName}
 	 * 
 	 * Function: Add Stock to DB
 	 * 
 	 * */
-	@RequestMapping(value="/stock/{symbol}", method=RequestMethod.POST)
+	@RequestMapping(value="/api/stock/{symbol}", method=RequestMethod.POST)
 	@ResponseBody
 	public void addStock(@PathVariable String symbol){
 		symbol = symbol.toUpperCase();
@@ -49,12 +49,12 @@ public class APIController {
 	/*
 	 * REST API
 	 * Method: DELETE
-	 * Value: /stock/delete/{symbolName}
+	 * Value: /api/stock/delete/{symbolName}
 	 * 
 	 * Function: Delete Stock From DB
 	 * 
 	 * */
-	@RequestMapping(value="/stock/delete/{symbol}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/api/stock/delete/{symbol}", method=RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteStock(@PathVariable String symbol){
 		symbol = symbol.toUpperCase();
@@ -65,12 +65,12 @@ public class APIController {
 	/*
 	 * REST API
 	 * Method: GET
-	 * Value: /stock
+	 * Value: /api/stock
 	 * 
 	 * Function: Get the List of Stock From DB
 	 * 
 	 * */
-	@RequestMapping(value="/stock", method=RequestMethod.GET)
+	@RequestMapping(value="/api/stock", method=RequestMethod.GET)
 	@ResponseBody
 	public List<StockInfo> listStock(){
 		return this.stockService.listAllStock();
@@ -81,12 +81,12 @@ public class APIController {
 	/*
 	 * REST API
 	 * Method: GET
-	 * Value: /stock/{symbolName}
+	 * Value: /api/stock/{symbolName}
 	 * 
 	 * Function: Get Specific Stock's Current Detail Information
 	 * 
 	 * */
-	@RequestMapping(value="/stockdetail/{symbol}", method=RequestMethod.GET)
+	@RequestMapping(value="/api/stockdetail/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public StockInfo getStockDetail(@PathVariable String symbol){
 		symbol = symbol.toUpperCase();
@@ -99,12 +99,12 @@ public class APIController {
 	/*
 	 * REST API
 	 * Method: GET
-	 * Value: /stock/history/{symbolName}
+	 * Value: /api/stock/history/{symbolName}
 	 * 
 	 * Function: Get Specific Stock's History Detail Information
 	 * 
 	 * */
-	@RequestMapping(value="/stock/history/{symbol}", method=RequestMethod.GET)
+	@RequestMapping(value="/api/stock/history/{symbol}", method=RequestMethod.GET)
 	@ResponseBody
 	public StockHistory getStockHistory(@PathVariable String symbol) throws ParseException{
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
